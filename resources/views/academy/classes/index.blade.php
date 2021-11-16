@@ -85,12 +85,11 @@
                                                         @method('PUT')
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
-                                                                <label for="departement_update">Département</label>
-                                                                <select name="departement" id="departement_update" class="form-control" required>
-                                                                    <option value="">Veillez choisir un département </option>
-                                                                    @foreach ($departments as $department)
-                                                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                                                    @endforeach
+                                                                <label for="teacher">Enseignants</label>
+                                                                <select name="teacher" id="teacher" class="form-control" required>
+                                                                    <option value="">Veillez choisir un Enseignants </option>
+                                                                    <option value="teacher1">enseignats 1 </option>
+                                                                    <option value="teacher2">enseignats 2 </option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-md-6">
@@ -188,8 +187,8 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="departement">Enseignants</label>
-                                    <select name="departement" id="departement" class="form-control" required>
+                                    <label for="teacher">Enseignants</label>
+                                    <select name="teacher" id="teacher" class="form-control" required>
                                         <option value="">Veillez choisir un Enseignants </option>
                                         <option value="teacher1">enseignats 1 </option>
                                         <option value="teacher2">enseignats 2 </option>
