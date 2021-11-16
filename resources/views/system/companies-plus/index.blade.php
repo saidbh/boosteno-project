@@ -32,8 +32,6 @@
                                         <tr class="text-center">
                                             <th>ID</th>
                                             <th>Nom</th>
-                                            <th><a class="text-dark" href="#" data-toggle="tooltip"
-                                                    data-placement="top" title="Label/Prénom">Alias</a></th>
                                             <th>Adresse</th>
                                             <th><a class="text-dark" href="#" data-toggle="tooltip"
                                                     data-placement="top" title="Code postal">CP</a></th>
@@ -45,7 +43,6 @@
                                             <tr class="text-center">
                                                 <td>{{ $company->id }}</td>
                                                 <td>{{ $company->name }}</td>
-                                                <td>{{ $company->alter_name == null ? '--' : $company->alter_name }}</td>
                                                 <td>{{ $company->address_line }}</td>
                                                 <td>{{ $company->zip_code }}</td>
                                                 <td>
@@ -58,7 +55,7 @@
                                                         <div class="modal fade" id="affectAgency" tabindex="-1"
                                                             role="dialog" aria-labelledby="exampleModalLabel"
                                                             aria-hidden="true">
-                                                            <div class="modal-dialog modal-xl" role="document">
+                                                            <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">
@@ -71,16 +68,14 @@
                                                                     <div class="modal-body">
                                                                         <div class="container">
                                                                             <div class="row">
-                                                                                <label for="exampleDataList"
+                                                                                <label for="agency"
                                                                                     class="form-label">Liste des Agences</label>
-                                                                                <input class="form-control"
-                                                                                    list="datalistOptions"
-                                                                                    id="exampleDataList"
-                                                                                    placeholder="rechercher">
-                                                                                <datalist id="datalistOptions">
-                                                                                    <option value="Agence Tunis">
-                                                                                    <option value="Agence Sousse">
-                                                                                </datalist>
+                                                                                    <select name="room" id="agency" class="form-control" required>
+                                                                                        <option selected value="">Veillez choisir une agence ...</option>
+                                                                                        <option value="1">agence 1</option>
+                                                                                        <option value="2">Agence 2</option>
+                                                                                        <option value="3">Agence 3</option>
+                                                                                    </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -155,13 +150,12 @@
             height: 20px;
             line-height: 20px;
         }
-
     </style>
     <script>
         $(document).ready(function() {
             $('#companies-plus-table').DataTable({
                 "columnDefs": [{
-                    "targets": [0, 5],
+                    "targets": [0, 4],
                     "orderable": false
                 }],
                 language: {
