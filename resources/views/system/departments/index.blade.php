@@ -177,6 +177,50 @@
                     <td>{{ $department->zip_code }}</td>
                     <td>
                       <div class="flex align-items-center list-user-action">
+                          <!--Affect agency start here-->
+                          <span data-toggle="modal" data-target="#affectAgency">
+                            <a href="#" data-toggle="tooltip" data-placement="top"
+                                title="Affecter agence"><i class="ri-building-line"></i></a>
+                        </span>
+                        <div class="modal fade" id="affectAgency" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            Affecter agences</h5>
+                                        <button type="button" class="close"
+                                            data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <label for="exampleDataList"
+                                                    class="form-label">Liste des Agences</label>
+                                                <input class="form-control"
+                                                    list="datalistOptions"
+                                                    id="exampleDataList"
+                                                    placeholder="rechercher">
+                                                <datalist id="datalistOptions">
+                                                    <option value="Agence Tunis">
+                                                        <option value="Agence Sousse">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn mr-2 iq-bg-danger"
+                                            data-dismiss="modal">Annuler</button>
+                                        <button type="submit"
+                                            class="btn iq-bg-success">Confirmer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <!--Affect agency end here-->
                         <a data-placement="top" title="" data-original-title="Modifier" href="#" data-toggle="modal" data-target="#DepartmentADD{{ $department->id }}"><i class="ri-pencil-line"></i></a>
                         <div class="text-left modal fade" id="DepartmentADD{{ $department->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl" role="document">

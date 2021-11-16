@@ -36,12 +36,10 @@
                                   <thead>
                                     <tr class="text-center">
                                       <th>Nom de la session</th>
-                                      <th>Description</th>
-                                      <th>Date de debut</th>
-                                      <th>Date de Fin</th>
+                                      <th>Date de l'ouverture</th>
+                                      <th>Date de la fermeture</th>
                                       <th>Nombre des etudiants</th>
                                       <th>Nombre des enseignants</th>
-                                      <th>Nombre des classes</th>
                                       <th>Status</th>
                                       <th>Action</th>
                                     </tr>
@@ -50,16 +48,14 @@
                                       @foreach ($sessions as $session)
                                       <tr class="text-center">
                                         <td>{{ $session->name }}</td>
-                                        <td>{{ $session->description }}</td>
                                         <td>{{ $session->calendar->start_date }}</td>
                                         <td>{{ $session->calendar->end_date }}</td>
                                         <td>1200</td>
                                         <td>30</td>
-                                        <td>40</td>
                                         <td>@if ($session->calendar->start_date <=(date('Y-m-d') && (date('Y-m-d')>$session->calendar->end_date)))
-                                            <i class="ri-checkbox-circle-fill" style="color:green"></i> Courante
-                                            @else
-                                            <i class="ri-close-circle-fill"></i> Fermer
+                                            <i class="ri-checkbox-circle-fill" style="color:green;font-size:24px"></i> Courante
+                                            @elseif ((date('Y-m-d')<$session->calendar->end_date))
+                                            <i class="ri-arrow-right-circle-fill" style="color:red;font-size:24px"></i> Prochaine
                                         @endif
                                         </td>
                                         <td>
@@ -92,13 +88,29 @@
                                                           @csrf
                                                           @method('put')
                                                           <!--content start here-->
-                                                          <div class="form-group">
-                                                              <label for="exampleFormControlInput1">Nom de la Session </label>
-                                                              <input type="text" class="form-control"  name="session" value="{{ $session->name }}" required />
-                                                          </div>
-                                                          <div class="form-group">
-                                                              <label for="exampleFormControlTextarea1">Description </label>
-                                                              <textarea class="form-control"  name="Description" rows="3">{{ $session->description }}</textarea>
+                                                          <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="session">Nom de la Session</label>
+                                                                <select class="form-control" id="session" name="session" required>
+                                                                    <option value=""></option>
+                                                                    <option value="Janvier">Janvier</option>
+                                                                    <option value="Février">février</option>
+                                                                    <option value="Mars">Mars</option>
+                                                                    <option value="Avril">Avril</option>
+                                                                    <option value="Mai">Mai</option>
+                                                                    <option value="Juin">Juin</option>
+                                                                    <option value="Juillet">Juillet</option>
+                                                                    <option value="Août">Août</option>
+                                                                    <option value="Septembre">Septembre</option>
+                                                                    <option value="Octobre">Octobre</option>
+                                                                    <option value="Novembre">Novembre</option>
+                                                                    <option value="Décembre">Décembre</option>
+                                                                </select>
+                                                              </div>
+                                                              <div class="form-group col-md-6">
+                                                                <label for="session_capacity_update">Capacité </label>
+                                                                <input type="number" class="form-control" id="session_capacity_update" name="session_capacity" required>
+                                                              </div>
                                                           </div>
                                                           <div class="row">
                                                               <div class="col-md-6">
@@ -181,25 +193,39 @@
                             <!--content start here-->
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="exampleFormControlInput1">Nom de la Session </label>
-                                    <input type="text" class="form-control" id="session" name="session" required />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="exampleFormControlTextarea1">Description </label>
-                                    <input type="text" class="form-control" id="Description" name="Description" required />
-                                </div>
+                                    <label for="session">Nom de la Session</label>
+                                    <select class="form-control" id="session" name="session" required>
+                                        <option value=""></option>
+                                        <option value="Janvier">Janvier</option>
+                                        <option value="Février">février</option>
+                                        <option value="Mars">Mars</option>
+                                        <option value="Avril">Avril</option>
+                                        <option value="Mai">Mai</option>
+                                        <option value="Juin">Juin</option>
+                                        <option value="Juillet">Juillet</option>
+                                        <option value="Août">Août</option>
+                                        <option value="Septembre">Septembre</option>
+                                        <option value="Octobre">Octobre</option>
+                                        <option value="Novembre">Novembre</option>
+                                        <option value="Décembre">Décembre</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="session_capacity">Capacité </label>
+                                    <input type="number" class="form-control" id="session_capacity" name="session_capacity" required>
+                                  </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Date de debut</label>
+                                        <label for="exampleInputEmail1">Date de l'ouverture</label>
                                         <input type="date" class="form-control" name="start_date" id="start_date"
                                             required />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Date de fin</label>
+                                        <label for="exampleInputEmail1">Date de fermeture</label>
                                         <input type="date" class="form-control" name="end_date" id="end_date" required />
                                     </div>
                                 </div>
@@ -235,7 +261,7 @@
               $('#session').keyup(function(){
             let e = $('#session');
             let l = e.val();
-            if(l.length > 2){
+            if(l != ""){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -243,10 +269,10 @@
                 e.addClass('is-invalid');
             }
         });
-        $('#Description').keyup(function(){
-            let e = $('#Description');
+        $('#session_capacity').keyup(function(){
+            let e = $('#session_capacity');
             let l = e.val();
-            if(l.length > 2){
+            if(l.length > 1){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -254,6 +280,7 @@
                 e.addClass('is-invalid');
             }
         });
+
           });
       </script>
 @endsection

@@ -132,7 +132,7 @@
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label for="name_lesson_update">Nom du cour</label>
-                                                                        <input name="name_lesson" type="text" class="form-control" id="namelesson" Value=""
+                                                                        <input name="name_lesson" type="text" class="form-control" id="namelesson"
                                                                             autocomplete="off" required readonly />
                                                                     </div>
                                                                 </div>
@@ -207,7 +207,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="Session">Session</label>
-                                    <select name="Session" id="inputState" class="form-control">
+                                    <select name="Session" id="inputState" class="form-control" required>
                                         <option value="">Veillez choisir une session ... </option>
                                         @foreach ($sessions as $session)
                                             <option value="{{ $session->id }}">{{ $session->name }}</option>
@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="teacher_id">Enseignants</label>
-                                    <select name="teacher_id" id="inputState" class="form-control">
+                                    <select name="teacher_id" id="inputState" class="form-control" required>
                                         <option value="">Veillez choisir un Enseignants ...</option>
                                         @foreach ($teachers as $teacher)
                                             <option value="{{ $teacher->employees->id }}">
@@ -229,7 +229,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="lessons_type_id">Type de Cours</label>
-                                    <select name="lessons_type_id" id="inputState" class="form-control">
+                                    <select name="lessons_type_id" id="inputState" class="form-control" required>
+                                        <option value=""></option>
                                         @foreach ($lessens_type as $lessen_type)
                                             <option value="{{ $lessen_type->id }}">{{ $lessen_type->name }}</option>
                                         @endforeach
@@ -237,8 +238,8 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="level">Niveau</label>
-                                    <select id="level" class="form-control">
-                                        <option></option>
+                                    <select id="level" class="form-control" required>
+                                        <option value=""></option>
                                         @foreach ($levels as $level)
                                             <option>{{ $level->name }}</option>
                                         @endforeach
@@ -246,8 +247,8 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="level_type">Type de Niveau</label>
-                                    <select id="level_type" class="form-control">
-                                        <option ></option>
+                                    <select id="level_type" class="form-control" required>
+                                        <option value=""></option>
                                         @foreach ($levels_type as $level_type)
                                             <option>{{ $level_type->name }}</option>
                                         @endforeach
@@ -255,7 +256,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="name_lesson">Nom du cour</label>
-                                    <input name="name_lesson" type="text" class="form-control" id="namelesson1" Value=""
+                                    <input name="name_lesson" type="text" class="form-control" id="namelesson1"
                                         autocomplete="off" required readonly />
                                 </div>
                             </div>

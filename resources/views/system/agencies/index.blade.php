@@ -79,6 +79,14 @@
                                                 <input type="text" class="form-control" name="agency_name" id="agency_name_add" value="" required />
                                               </div>
                                               <div class="form-group col-md-6">
+                                                <label class="control-label" for="company"><b>Société</b></label>
+                                                <select id="company" name="company" class="form-control form-control-sm mb-3" required>
+                                                    <option value="" >Veillez choisir une société ...</option>
+                                                  <option value="company1">Société 1</option>
+                                                  <option value="company2">Société 2</option>
+                                                </select>
+                                              </div>
+                                              <div class="form-group col-md-6">
                                                 <label class="control-label" for="city"><b>Ville</b></label>
                                                 <select id="city" name="city" class="form-control form-control-sm mb-3" required>
                                                   <option selected>Ariana</option>
@@ -158,6 +166,7 @@
                 <thead>
                   <tr class="text-center">
                     <th>Nom de l'agence</th>
+                    <th>Société</th>
                     <th>Email</th>
                     <th>Téléphone</th>
                     <th>Fax</th>
@@ -171,6 +180,7 @@
                   @foreach($agencies as $agency)
                   <tr class="text-center">
                     <td>{{ $agency->name }}</td>
+                    <td>Boosteno</td>
                     <td>{{ $agency->email }}</td>
                     <td>{{ $agency->phone }}</td>
                     <td>{{ $agency->fax }}</td>
@@ -241,6 +251,14 @@
                                                   <label class="control-label" for="agency_name"><b>Nom de l'agence </b> </label>
                                                   <input type="text" class="form-control" name="agency_name" id="agency_name" value="{{ $agency->name }}" required />
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label" for="company"><b>Société</b></label>
+                                                    <select id="company" name="company" class="form-control form-control-sm mb-3" required>
+                                                        <option value="" >Veillez choisir une société ...</option>
+                                                      <option value="company1">Société 1</option>
+                                                      <option value="company2">Société 2</option>
+                                                    </select>
+                                                  </div>
                                                 <div class="form-group col-md-6">
                                                   <label class="control-label" for="city"><b>Ville</b></label>
                                                   <select id="city" name="city" class="form-control form-control-sm mb-3" required>
@@ -450,7 +468,7 @@
         $('#zip_code').keyup(function(){
             let e = $('#zip_code');
             let l = e.val();
-            if(l.length > 4){
+            if(l.length > 3){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -486,13 +504,23 @@
         $('#email').keyup(function(){
             let e = $('#email');
             let l = e.val();
-            if(l.length > 5){
+            if(IsEmail(l)){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
                 e.removeClass('is-valid');
                 e.addClass('is-invalid');
             }
+            /////
+            function IsEmail(email) {
+                var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if(!regex.test(email)) {
+                    return false;
+                }else{
+                    return true;
+                }
+                }
+            /////
         });
         //////////////////////////Add agency modal script ////////////////
         $('#agency_name_add').keyup(function(){
@@ -523,7 +551,7 @@
         $('#zip_code_add').keyup(function(){
             let e = $('#zip_code_add');
             let l = e.val();
-            if(l.length > 4){
+            if(l.length > 3){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -555,18 +583,29 @@
                 e.addClass('is-invalid');
             }
         });
-        //
-        $('#email_add').keyup(function(){
+                ///
+                $('#email_add').keyup(function(){
             let e = $('#email_add');
             let l = e.val();
-            if(l.length > 5){
+            if(IsEmail(l)){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
                 e.removeClass('is-valid');
                 e.addClass('is-invalid');
             }
+            /////
+            function IsEmail(email) {
+                var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if(!regex.test(email)) {
+                    return false;
+                }else{
+                    return true;
+                }
+                }
+            /////
         });
+        ///
 
 </script>
 @endsection

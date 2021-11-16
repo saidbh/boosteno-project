@@ -275,7 +275,7 @@
         $('#company_zip_code').keyup(function(){
             let e = $('#company_zip_code');
             let l = e.val();
-            if(l.length > 7){
+            if(l.length > 3){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -287,7 +287,7 @@
         $('#company_address').keyup(function(){
             let e = $('#company_address');
             let l = e.val();
-            if(l.length > 10){
+            if(l.length > 5){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -299,7 +299,7 @@
         $('#company_country').keyup(function(){
             let e = $('#company_country');
             let l = e.val();
-            if(l.length > 3){
+            if(l.length > 4){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{
@@ -311,7 +311,7 @@
         $('#company_tax_number').keyup(function(){
             let e = $('#company_tax_number');
             let l = e.val();
-            if(l.length > 3){
+            if(l.length > 5){
                 e.removeClass('is-invalid');
                 e.addClass('is-valid');
             }else{

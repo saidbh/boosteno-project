@@ -42,7 +42,7 @@
                                             <th>Capacité</th>
                                             <th>Salle</th>
                                             <th>departement</th>
-                                            <th>Cours</th>
+                                            <th>Type de Cour</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -86,7 +86,7 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
                                                                 <label for="departement_update">Département</label>
-                                                                <select name="departement" id="departement_update" class="form-control" >
+                                                                <select name="departement" id="departement_update" class="form-control" required>
                                                                     <option value="">Veillez choisir un département </option>
                                                                     @foreach ($departments as $department)
                                                                     <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -95,7 +95,7 @@
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="room">Salles</label>
-                                                                <select name="room" id="room_update" class="form-control" >
+                                                                <select name="room" id="room_update" class="form-control" required>
                                                                     <option selected value="">Veillez choisir une salle ...</option>
                                                                     <option value="1">SAlle 1</option>
                                                                     <option value="2">Salle 2</option>
@@ -106,7 +106,7 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
                                                                 <label for="lesson">Cours</label>
-                                                                <select name="lesson" id="lesson_update" class="form-control">
+                                                                <select name="lesson" id="lesson_update" class="form-control" required>
                                                                     <option selected value="">Veillez choisir un cours ...</option>
                                                                 </select>
                                                             </div>
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="room">Salles</label>
-                                    <select name="room" id="room" class="form-control" >
+                                    <select name="room" id="room" class="form-control" required>
                                         <option value="">Veillez choisir une salle ...</option>
                                         <option value="1">SAlle 1</option>
                                         <option value="2">Salle 2</option>
