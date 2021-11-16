@@ -292,66 +292,6 @@
         });
         //////////////////////////////////////////////
         $(document).ready(function() {
-              //
-              $('#Session').change(function(){
-            let e = $('#Session');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#teacher').change(function(){
-            let e = $('#teacher');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#lessons').change(function(){
-            let e = $('#lessons');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#Class').change(function(){
-            let e = $('#Class');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#rooms').change(function(){
-            let e = $('#rooms');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
         //
         $('#hour_rate').keyup(function(){
             let e = $('#hour_rate');
@@ -380,65 +320,6 @@
           ////////////////////update part//////////////////////
           $(document).ready(function() {
               //
-              $('#Session_update').change(function(){
-            let e = $('#Session_update');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#teacher_update').change(function(){
-            let e = $('#teacher_update');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#lessons_update').change(function(){
-            let e = $('#lessons_update');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#Class_update').change(function(){
-            let e = $('#Class_update');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
-        //
-        $('#rooms_update').change(function(){
-            let e = $('#rooms_update');
-            let l = e.val();
-            if(l != ""){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
-        });
         //
         $('#hour_rate_update').keyup(function(){
             let e = $('#hour_rate_update');
