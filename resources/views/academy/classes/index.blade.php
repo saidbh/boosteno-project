@@ -41,6 +41,7 @@
                                             <th>Classe</th>
                                             <th>Capacité</th>
                                             <th>Salle</th>
+                                            <th>Ensiegnants</th>
                                             <th>Type de Cour</th>
                                             <th>Action</th>
                                         </tr>
@@ -52,6 +53,7 @@
                                         <td>{{ $class->name }}</td>
                                         <td>{{ $class->capacity }}</td>
                                         <td>{{ ($class->rooms_id !=Null)? $class->rooms_id : '--' }}</td>
+                                        <td>Mohammed amine</td>
                                         <td>{{ ($class->lessons_id !=Null)? $class->lessons_id : '--' }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
