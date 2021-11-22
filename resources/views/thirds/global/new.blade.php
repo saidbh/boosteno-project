@@ -115,18 +115,17 @@
                     </div>
                   </div>
                   <div id="companyForm" class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                       <label class="control-label" for="company_name"><b>Nom de la société</b></label>
                       <input type="text" class="form-control" name="company_name" id="company_name"
                         value="{{ old('company_name') }}" />
                     </div>
-                    <div class="form-group col-md-4">
-                      <label class="control-label" for="company_altername"><b>Nom commercial
-                          ...)</b></label>
+{{--                     <div class="form-group col-md-4">
+                      <label class="control-label" for="company_altername"><b>Nom commercial</b></label>
                       <input type="text" class="form-control" name="company_altername" id="company_altername"
                         value="{{ old('company_altername') }}" />
-                    </div>
-                    <div class="form-group col-md-4">
+                    </div> --}}
+                    <div class="form-group col-md-6">
                       <label class="control-label" for="company_tax_number"><b>Matricule fiscale</b></label>
                       <input type="text" class="form-control" name="company_tax_number" id="company_tax_number"
                         value="{{ old('company_tax_number') }}" />
@@ -195,7 +194,7 @@
                         value="{{ old('zip_code') }}" />
                     </div>
                   </div>
-                  <h5 class="mb-3">Documents</h5>
+{{--                   <h5 class="mb-3">Documents</h5>
                   <div class="row">
                     <div class="form-group col-md-12">
                       <div id="dragndrop" class="drag-n-drop">
@@ -214,7 +213,7 @@
                   <div class="container">
                     <div class="row d-flex gallery">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="row">
                     <div class="col-md-12 d-flex flex-row justify-content-end">
                       <button type="reset" class="btn mr-2 iq-bg-danger">Annuler</button>

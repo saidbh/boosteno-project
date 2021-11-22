@@ -21,9 +21,9 @@
                                         <div class="d-flex flex-row">
                                             <a href="#" class="btn btn-success" data-toggle="modal"
                                                 data-target="#AddSessions"><i class="ri-add-line"></i> Ajouter</a>
-                                            <a href="#" class="btn mx-1 btn-primary">PDF</a>
-                                            <a href="#" class="btn btn-primary">Excel</a>
-                                            <a href="#" class="btn ml-1 btn-primary">Imprimer</a>
+                                            <a href="#" class="btn mx-1 btn-success">PDF</a>
+                                            <a href="#" class="btn btn-success">Excel</a>
+                                            <a href="#" class="btn ml-1 btn-success">Imprimer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -89,9 +89,9 @@
                                                           @method('put')
                                                           <!--content start here-->
                                                           <div class="row">
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-4">
                                                                 <label for="session">Nom de la Session</label>
-                                                                <select class="form-control" id="session" name="session" required>
+                                                                <select class="form-control" id="session_update" name="session" required>
                                                                     <option value=""></option>
                                                                     <option value="Janvier">Janvier</option>
                                                                     <option value="Février">février</option>
@@ -107,23 +107,17 @@
                                                                     <option value="Décembre">Décembre</option>
                                                                 </select>
                                                               </div>
-                                                              <div class="form-group col-md-6">
-                                                                <label for="session_capacity_update">Capacité </label>
-                                                                <input type="number" class="form-control" id="session_capacity_update" name="session_capacity" required>
-                                                              </div>
-                                                          </div>
-                                                          <div class="row">
-                                                              <div class="col-md-6">
+                                                              <div class="col-md-4">
                                                                   <div class="form-group">
                                                                       <label for="exampleInputEmail1">Date de debut</label>
                                                                       <input type="date" class="form-control" name="start_date" id="start_date"
                                                                           required />
                                                                   </div>
                                                               </div>
-                                                              <div class="col-md-6">
+                                                              <div class="col-md-4">
                                                                   <div class="form-group">
-                                                                      <label for="exampleInputEmail1">Heure de Fin</label>
-                                                                      <input type="time" class="form-control" name="end_time" id="end_time" required />
+                                                                      <label for="exampleInputEmail1">date de Fin</label>
+                                                                      <input type="date" class="form-control" name="date_time" id="date_time" required />
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -192,10 +186,16 @@
                             @csrf
                             <!--content start here-->
                             <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="session_name">Nom</label>
+                                    <input type="text" class="form-control" name="session_name" id="session_name" required readonly>
+                                </div>
+                                </div>
                                 <div class="form-group col-md-6">
-                                    <label for="session">Nom de la Session</label>
-                                    <select class="form-control" id="session" name="session" required>
-                                        <option value=""></option>
+                                    <label for="months">Mois</label>
+                                    <select class="form-control" id="months" name="months" required>
+                                        <option value="">Veillez choisir un mois ...</option>
                                         <option value="Janvier">Janvier</option>
                                         <option value="Février">février</option>
                                         <option value="Mars">Mars</option>
@@ -210,26 +210,22 @@
                                         <option value="Décembre">Décembre</option>
                                     </select>
                                   </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="session_capacity">Capacité </label>
-                                    <input type="number" class="form-control" id="session_capacity" name="session_capacity" required>
-                                  </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Date de l'ouverture</label>
-                                        <input type="date" class="form-control" name="start_date" id="start_date"
-                                            required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Date de fermeture</label>
-                                        <input type="date" class="form-control" name="end_date" id="end_date" required />
-                                    </div>
-                                </div>
-                            </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="start_date">Date de debut</label>
+                                          <input type="text" class="form-control" name="start_date" id="start_date"
+                                              required />
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="end_date">date de Fin</label>
+                                          <input type="text" class="form-control" name="end_date" id="end_date" required />
+                                      </div>
+                                  </div>
+                              </div>
                             <!--content end here-->
                     </div>
                 </div>
@@ -243,11 +239,12 @@
         </div>
     </div>
     <!--Modal add session end -->
+
     <script>
         $(document).ready(function() {
           $('#Clients-table').DataTable({
             "columnDefs": [{
-              "targets": [0, 4]
+              "targets": [0, 6]
               , "orderable": false
             }]
             , language: {
@@ -257,9 +254,14 @@
         });
         //////////////////////////////////////////////
         $(document).ready(function() {
+                        //
+                $('#months').change(function(){
+                let val = $('#months').val();
+                $('#session_name').val(val);
+                });
               //
-              $('#session').keyup(function(){
-            let e = $('#session');
+              $('#session_name').keyup(function(){
+            let e = $('#session_name');
             let l = e.val();
             if(l != ""){
                 e.removeClass('is-invalid');
@@ -268,19 +270,41 @@
                 e.removeClass('is-valid');
                 e.addClass('is-invalid');
             }
-        });
-        $('#session_capacity').keyup(function(){
-            let e = $('#session_capacity');
-            let l = e.val();
-            if(l.length > 1){
-                e.removeClass('is-invalid');
-                e.addClass('is-valid');
-            }else{
-                e.removeClass('is-valid');
-                e.addClass('is-invalid');
-            }
+
         });
 
           });
+          ///////date picker ////
+  $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#start_date" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#end_date" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 3
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+
+      return date;
+    }
+  } );
       </script>
 @endsection

@@ -57,6 +57,8 @@ use App\Http\Controllers\Academy\LevelsManagmentController;
 use App\Http\Controllers\Academy\TimesheetsManagmentController;
 use App\Http\Controllers\Academy\AvailablityManagmentController;
 use App\Http\Controllers\Academy\ReservationManagmentController;
+use App\Http\Controllers\Calendar\EventsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -131,13 +133,13 @@ Route::group(['middleware'=>'auth:web','except'=>'logout'],function(){
       'create' => 'academy-rooms.create',
     ]);
 
-    Route::resource('classes',ClassesManagmentController::class)->names([
+/*     Route::resource('classes',ClassesManagmentController::class)->names([
       'index' => 'academy-classes',
       'create' => 'academy-classes.create',
       'store' => 'academy-classes.store',
       'update' => 'academy-classes.update',
       'destroy' => 'academy-classes.destroy',
-    ]);
+    ]); */
 
     Route::resource('lessons',LessonsManagmentController::class)->names([
       'index' => 'academy-lessons',
@@ -178,14 +180,14 @@ Route::group(['middleware'=>'auth:web','except'=>'logout'],function(){
               ]);
 
                           //Availablity
-            Route::resource('availablity',AvailablityManagmentController::class)->names([
-                'index' => 'academy-availablity',
-                'create' => 'academy-availablity.create',
-                'store' => 'academy-availablity.store',
-                'update' => 'academy-availablity.update',
-                'destroy' => 'academy-availablity.destroy',
+            Route::resource('availability',AvailablityManagmentController::class)->names([
+                'index' => 'academy-availability',
+                'create' => 'academy-availability.create',
+                'store' => 'academy-availability.store',
+                'update' => 'academy-availability.update',
+                'destroy' => 'academy-availability.destroy',
               ]);
-                                        //Reservation
+                  //Reservation
             Route::resource('reservation',ReservationManagmentController::class)->names([
                 'index' => 'academy-reservation',
                 'create' => 'academy-reservation.create',
@@ -194,8 +196,25 @@ Route::group(['middleware'=>'auth:web','except'=>'logout'],function(){
                 'destroy' => 'academy-reservation.destroy',
               ]);
               //////
+              Route::resource('schooling',SchoolingManagmentController::class)->names([
+                'index' => 'academy-schooling',
+                'create' => 'academy-schooling.create',
+                'store' => 'academy-schooling.store',
+                'update' => 'academy-schooling.update',
+                'destroy' => 'academy-schooling.destroy',
+              ]);
+              //////
 
   });
+  /////
+  Route::group(['prefix'=>'calendar','name'=>'calendar'], function(){
+
+    Route::resource('events',EventsController::class)->names([
+        'index'=>'calendar-events',
+      ]);
+      Route::post('eventsCRUD', [EventsController::class ,'calendarEvents'])->name('calendar-events.ajax');
+  });
+  /////
 
   Route::group(['prefix'=>'visa','name'=>'visa'], function(){
     Route::get('/',function(){
@@ -374,14 +393,14 @@ Route::group(['middleware'=>'auth:web','except'=>'logout'],function(){
   Route::group(['prefix'=>'system'],function(){
     Route::get('/',function(){return redirect('dashboard');})->name('system');
 
-    Route::resource('companies-plus', CompaniesPlusController::class)->names([
-      'index' => 'system-companies-plus',
-      'create' => 'system-companies-plus.create',
-      'store' => 'system-companies-plus.store',
-      'edit' => 'system-companies-plus.edit',
-      'update' => 'system-companies-plus.update',
-      'destroy' => 'system-companies-plus.destroy',
-    ]);
+    Route::resource('companies', CompaniesPlusController::class)->names([
+        'index' => 'system-companies-plus',
+        'create' => 'system-companies-plus.create',
+        'store' => 'system-companies-plus.store',
+        'edit' => 'system-companies-plus.edit',
+        'update' => 'system-companies-plus.update',
+        'destroy' => 'system-companies-plus.destroy',
+      ]);
 
     Route::resource('role-permission', RolePermissionController::class)->names([
       'index' => 'system-role-permission',
@@ -434,6 +453,153 @@ Route::group(['middleware'=>'auth:web','except'=>'logout'],function(){
     Route::get('dictionary',function(){
       return 'hello';
     })->name('system-dictionary');
+  });
+
+  /**
+   * new routes
+   *
+   */
+  Route::group(['prefix'=>'sales','name'=>'sales'],function(){
+
+    Route::get('/',function(){return redirect('dashboard');})->name('sales');
+
+    Route::resource('clients', ClientsController::class)->names([
+      'index' => 'sales-clients',
+      'create' => 'sales-clients.create',
+      'store' => 'sales-clients.store'
+    ]);
+
+    Route::post('estimate/orders/add', [EstimatesController::class, "addOrders"])->name('sales-estimates-orders.add');
+    Route::get('estimate/orders/items', [EstimatesController::class, "create"])->name('sales-estimates.items');
+    Route::get('estimate/orders/list', [EstimatesController::class,"getOrders"])->name('sales-estimates-orders.list');
+    Route::get('estimate/taxes/list', [EstimatesController::class,"getTaxes"])->name('sales-estimates-taxes.list');
+    Route::delete('estimate/orders/delete', [EstimatesController::class,"deleteOrders"])->name('sales-estimates-orders.delete');
+    Route::delete('estimate/taxes/delete', [EstimatesController::class,"deleteTaxes"])->name('sales-estimates-taxes.delete');
+    Route::post('estimate/total', [EstimatesController::class, 'setTotal'])->name('sales-estimates.total');
+    Route::get('estimate/confirm', [EstimatesController::class, 'confirm'])->name('sales-estimates.confirm');
+    Route::get('estimate/preview',[EstimatesController::class, 'previewEstimate'])->name('sales-estimates.preview');
+
+    Route::get('estimate/clients/list',[EstimatesController::class, 'clientsList'])->name('sales-estimates-client.list');
+    Route::post('estimate/clients/add',[EstimatesController::class, 'clientAdd'])->name('sales-estimates-client.add');
+
+    Route::resource('estimates', EstimatesController::class)->names([
+      'index' => 'sales-estimates',
+      'create' => 'sales-estimates.create',
+      'store' => 'sales-estimates.store',
+      'show' => 'sales-estimates.show',
+      'edit' => 'sales-estimates.edit',
+      'update' => 'sales-estimates.update',
+      'destroy' => 'sales-estimates.destroy',
+    ]);
+
+    Route::resource('orders', OrdersController::class)->names([
+      'index' => 'sales-orders',
+      'create' => 'sales-orders.create',
+      'store' => 'sales-orders.store',
+      'show' => 'sales-orders.show',
+      'edit' => 'sales-orders.edit',
+      'update' => 'sales-orders.update',
+      'destroy' => 'sales-orders.destroy',
+    ]);
+
+    Route::post('commande/orders/add', [Sales\OrdersController::class, "addOrders"])->name('sales-commande-orders.add');
+    Route::get('commande/orders/items', [Sales\OrdersController::class, "create"])->name('sales-commande.items');
+    Route::get('commande/orders/list', [Sales\OrdersController::class,"getOrders"])->name('sales-commande-orders.list');
+    Route::get('commande/taxes/list', [Sales\OrdersController::class,"getTaxes"])->name('sales-commande-taxes.list');
+    Route::delete('commande/orders/delete', [Sales\OrdersController::class,"deleteOrders"])->name('sales-commande-orders.delete');
+    Route::delete('commande/taxes/delete', [Sales\OrdersController::class,"deleteTaxes"])->name('sales-commande-taxes.delete');
+    Route::post('commande/total', [Sales\OrdersController::class, 'setTotal'])->name('sales-commande.total');
+    Route::get('commande/confirm', [Sales\OrdersController::class, 'confirm'])->name('sales-commande.confirm');
+
+    Route::resource('services', Sales\ServicesController::class)->names([
+      'index' => 'sales-services',
+      'create' => 'sales-services.create',
+      'store' => 'sales-services.store',
+      'show' => 'sales-services.show',
+      'edit' => 'sales-services.edit',
+      'update' => 'sales-services.update',
+      'destroy' => 'sales-services.destroy',
+    ]);
+
+    Route::post('invoice/orders/add', [Sales\InvoicesController::class, "addOrders"])->name('sales-invoices-orders.add');
+    Route::get('invoice/orders/items', [Sales\InvoicesController::class, "create"])->name('sales-invoices.items');
+    Route::get('invoice/orders/list', [Sales\InvoicesController::class,"getOrders"])->name('sales-invoices-orders.list');
+    Route::get('invoice/taxes/list', [Sales\InvoicesController::class,"getTaxes"])->name('sales-invoices-taxes.list');
+    Route::delete('invoice/orders/delete', [Sales\InvoicesController::class,"deleteOrders"])->name('sales-invoices-orders.delete');
+    Route::delete('invoice/taxes/delete', [Sales\InvoicesController::class,"deleteTaxes"])->name('sales-invoices-taxes.delete');
+    Route::post('invoice/total', [Sales\InvoicesController::class, 'setTotal'])->name('sales-invoices.total');
+    Route::get('invoice/confirm', [Sales\InvoicesController::class, 'confirm'])->name('sales-invoices.confirm');
+    Route::get('invoice/preview',[Sales\InvoicesController::class, 'previewInvoice'])->name('sales-invoices.preview');
+    Route::resource('invoices', Sales\InvoicesController::class)->names([
+      'index' => 'sales-invoices',
+      'create' => 'sales-invoices.create',
+      'store' => 'sales-invoices.store',
+      'show' => 'sales-invoices.show',
+      'edit' => 'sales-invoices.edit',
+      'update' => 'sales-invoices.update',
+      'destroy' => 'sales-invoices.destroy',
+    ]);
+
+  });
+
+  Route::group(['prefix'=>'purchases','name'=>'purchases'], function(){
+    Route::get('/',function(){return redirect('dashboard');})->name('purchases');
+
+    Route::resource('suppliers', Purchases\SuppliersController::class)->names([
+      'index' => 'purchases-suppliers',
+      'create' => 'purchases-suppliers.create',
+      'store' => 'purchases-suppliers.store',
+      'show' => 'purchases-suppliers.show',
+      'edit' => 'purchases-suppliers.edit',
+      'update' => 'purchases-suppliers.update',
+      'destroy' => 'purchases-suppliers.destroy',
+    ]);
+    Route::resource('services', Purchases\ServicesController::class)->names([
+      'index' => 'purchases-services',
+      'create' => 'purchases-services.create',
+      'store' => 'purchases-services.store',
+      'show' => 'purchases-services.show',
+      'edit' => 'purchases-services.edit',
+      'update' => 'purchases-services.update',
+      'destroy' => 'purchases-services.destroy',
+    ]);
+    Route::resource('estimates', Purchases\EstimatesController::class)->names([
+      'index' => 'purchases-estimates',
+      'create' => 'purchases-estimates.create',
+      'store' => 'purchases-estimates.store',
+      'show' => 'purchases-estimates.show',
+      'edit' => 'purchases-estimates.edit',
+      'update' => 'purchases-estimates.update',
+      'destroy' => 'purchases-estimates.destroy',
+    ]);
+    Route::resource('orders', Purchases\OrdersController::class)->names([
+      'index' => 'purchases-orders',
+      'create' => 'purchases-orders.create',
+      'store' => 'purchases-orders.store',
+      'show' => 'purchases-orders.show',
+      'edit' => 'purchases-orders.edit',
+      'update' => 'purchases-orders.update',
+      'destroy' => 'purchases-orders.destroy',
+    ]);
+    Route::resource('invoices', Purchases\InvoicesController::class)->names([
+      'index' => 'purchases-invoices',
+      'create' => 'purchases-invoices.create',
+      'store' => 'purchases-invoices.store',
+      'show' => 'purchases-invoices.show',
+      'edit' => 'purchases-invoices.edit',
+      'update' => 'purchases-invoices.update',
+      'destroy' => 'purchases-invoices.destroy',
+    ]);
+    Route::resource('stock', Purchases\StockController::class)->names([
+      'index' => 'purchases-stock',
+      'create' => 'purchases-stock.create',
+      'store' => 'purchases-stock.store',
+      'show' => 'purchases-stock.show',
+      'edit' => 'purchases-stock.edit',
+      'update' => 'purchases-stock.update',
+      'destroy' => 'purchases-stock.destroy',
+    ]);
+
   });
 
 });

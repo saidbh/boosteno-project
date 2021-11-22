@@ -23,7 +23,8 @@ class ClassesManagmentController extends Controller
     {
         $classes = Classes::get();
         $departments = Departments::get();
-        $levels = levels::get();
+        //$levels = levels::get();
+        $levels = null;
         //$rooms = Rooms::get();
         $lessens = Lessons::get();
         return view('academy.classes.index', ['classes' => $classes, 'departments' => $departments, 'levels' => $levels, 'lessens' => $lessens]);

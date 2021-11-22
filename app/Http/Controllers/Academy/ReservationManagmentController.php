@@ -15,6 +15,7 @@ class ReservationManagmentController extends Controller
     public function index()
     {
         //
+
         return view('academy.reservation.index');
     }
 

@@ -407,7 +407,7 @@
                                             value="{{ old('zip_code') }}" required/>
                                         </div>
                                       </div>
-                                      <h5 class="mb-3">Documents</h5>
+{{--                                       <h5 class="mb-3">Documents</h5>
                                       <div class="row">
                                         <div class="form-group col-lg-12">
                                           <div id="dragndrop" class="drag-n-drop">
@@ -426,7 +426,7 @@
                                       <div class="container">
                                         <div class="row d-flex gallery">
                                         </div>
-                                      </div>
+                                      </div> --}}
                                     </div>
                                   </div>
                                 </div>

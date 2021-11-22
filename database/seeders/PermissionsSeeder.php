@@ -49,12 +49,12 @@ class PermissionsSeeder extends Seeder
                 [
                     'roles_id' => 1,
                     'sub_categories_id' => 4,
-                    'can_read' => 1,
-                    'can_create' => 1,
-                    'can_update' => 1,
-                    'can_delete' => 1,
-                    'can_delete' => 1,
-                    'access' => 1,
+                    'can_read' => 0,
+                    'can_create' => 0,
+                    'can_update' => 0,
+                    'can_delete' => 0,
+                    'can_delete' => 0,
+                    'access' => 0,
                 ],
                 [
                     'roles_id' => 1,

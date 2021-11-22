@@ -75,7 +75,32 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label class="control-label" for="company_city">Ville</label>
-                      <input type="text" class="form-control" name="company_city" id="company_city" value="{{ old('company_city') }}" required/>
+                      <select id="company_city" name="company_city" class="form-control form-control-sm mb-3" required>
+                        <option selected>Ariana</option>
+                        <option>Béja</option>
+                        <option>Ben Arous</option>
+                        <option>Bizerte</option>
+                        <option>Gabès</option>
+                        <option>Nabeul</option>
+                        <option>Jendouba</option>
+                        <option>Kairouan</option>
+                        <option>Kasserine</option>
+                        <option>Kebili</option>
+                        <option>Kef</option>
+                        <option>Mahdia</option>
+                        <option>Manouba</option>
+                        <option>Medenine</option>
+                        <option>Monastir</option>
+                        <option>Gafsa</option>
+                        <option>Sfax</option>
+                        <option>Sidi Bouzid</option>
+                        <option>Siliana</option>
+                        <option>Sousse</option>
+                        <option>Tataouine</option>
+                        <option>Tozeur</option>
+                        <option>Tunis</option>
+                        <option>Zaghouan</option>
+                      </select>
                     </div>
                     <div class="form-group col-md-6">
                       <label class="control-label" for="company_zip_code">Code postale</label>
@@ -83,7 +108,9 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label class="control-label" for="company_country">Pays</label>
-                      <input type="text" class="form-control" name="company_country" id="company_country" value="{{ old('company_country') }}" required/>
+                      <select id="company_country" name="company_country" class="form-control form-control-sm mb-3" required>
+                        <option selected>Tunisie</option>
+                      </select>
                     </div>
                     <div class="form-group col-md-6">
                       <label class="control-label" for="company_phone">Téléphone</label>

@@ -38,30 +38,26 @@
                       <th>Niveau</th>
                       <th>Email</th>
                       <th>Agence</th>
-                      <th>Département</th>
                       <th>Téléphone</th>
                       <th>Adresse</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($teachers as $teacher)
                       <tr class="text-center">
-                        <td>{{ $teacher->employees->first_name }}</td>
-                        <td>{{ $teacher->employees->last_name }}</td>
-                        <td>{{ $teacher->employees->level }}</td>
-                        <td>{{ $teacher->employees->email }}</td>
-                        <td>{{ $teacher->employees->agency->name }}</td>
-                        <td>{{ $teacher->employees->department->name }}</td>
-                        <td>{{ $teacher->employees->phone }}</td>
-                        <td>{{ $teacher->employees->address_line }}</td>
+                        <td>Mohammed</td>
+                        <td>amine</td>
+                        <td>B2</td>
+                        <td>amine@gmail.com</td>
+                        <td>Lac1</td>
+                        <td>12345678</td>
+                        <td>Tunis 1000 cité ezahra</td>
                         <td>
                           <div class="flex align-items-center list-user-action">
                             <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Consulter" href="{{ route('teacher_profile') }}"><i class="ri-eye-line"></i></a>
                           </div>
                         </td>
                       </tr>
-                      @endforeach
                   </tbody>
                 </table>
               </div>
@@ -77,7 +73,7 @@
 $(document).ready(function() {
         $('#teacher-table').DataTable({
             "columnDefs": [{
-                "targets": [0, 8]
+                "targets": [0, 7]
                 , "orderable": false
             }]
             , language: {
